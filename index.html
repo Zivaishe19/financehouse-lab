@@ -1,44 +1,463 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FinanceHouse Lab — Investment Experience Simulation</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NovaVest Digital | Crypto & NFT Portfolio</title>
 <style>
-:root{--bg:#07111f;--panel:#0e1b2d;--panel2:#12233a;--line:#21354c;--muted:#9eb0c7;--text:#eef5ff;--green:#37e0a1;--red:#ff7285;--blue:#6ea8ff}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#102945 0,transparent 42%),var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.5}
-a{color:inherit;text-decoration:none}.wrap{max-width:1160px;margin:auto;padding:0 22px}.notice{background:#342a12;color:#ffe7a2;border-bottom:1px solid #79652d;padding:10px 16px;text-align:center;font-size:12px;font-weight:700;letter-spacing:.04em}
-header{border-bottom:1px solid #1b2d42;background:#07111fd9;position:sticky;top:0;z-index:5;backdrop-filter:blur(16px)}.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk';font-weight:700;font-size:19px}.logo{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--green),#1f9cba);display:grid;place-items:center;color:#06211d;font-weight:900}.navlinks{display:flex;gap:24px;align-items:center;color:var(--muted);font-size:14px}.navlinks a:hover{color:white}.pill{border:1px solid #31516c;border-radius:999px;padding:8px 13px;font-size:12px;color:#c9d9eb}
-main{padding:50px 0 70px}.eyebrow{color:var(--green);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase}.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:38px;align-items:center}.hero h1{font:700 clamp(38px,5.4vw,66px)/1.04 'Space Grotesk';letter-spacing:-.055em;margin:15px 0 20px}.hero h1 span{color:var(--green)}.hero p{color:var(--muted);font-size:17px;max-width:610px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:11px;padding:13px 18px;font:700 14px 'DM Sans';cursor:pointer}.primary{background:var(--green);color:#06251b}.secondary{background:#14263d;border:1px solid #2a415b;color:var(--text)}.hero-card,.card{background:linear-gradient(160deg,#102139,#0c1828);border:1px solid var(--line);border-radius:20px;padding:23px;box-shadow:0 22px 70px #0002}.cardtop{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}.demo-badge{border:1px solid #3a6b62;color:var(--green);padding:5px 9px;border-radius:7px;font-size:10px;font-weight:800;letter-spacing:.08em}.big-number{font:700 38px 'Space Grotesk';margin:14px 0 3px}.positive{color:var(--green)}.tiny{color:var(--muted);font-size:12px}.mini-chart{height:95px;margin:16px 0 20px;width:100%}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#0b1727;border:1px solid #1d3046;padding:12px;border-radius:12px}.stat b{display:block;font-size:16px}.stat span{color:var(--muted);font-size:11px}
-.section{margin-top:70px}.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:22px}.section h2{font:700 30px 'Space Grotesk';margin:7px 0}.sectionhead p{margin:0;color:var(--muted);max-width:560px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.package{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:22px}.package.featured{border-color:#368c77;box-shadow:0 0 0 1px #1d5e4d inset}.package h3{margin:0 0 5px}.amount{font:700 27px 'Space Grotesk';margin:14px 0 2px}.package ul{padding-left:18px;color:var(--muted);font-size:13px;min-height:70px}.tag{font-size:11px;color:var(--green);background:#13352e;border-radius:6px;padding:5px 8px;display:inline-block}
-.calculator{display:grid;grid-template-columns:1fr 1fr;gap:20px}.field{margin:17px 0}.field label{display:block;color:#b7c6d9;font-size:13px;margin-bottom:8px}.field input,.field select{width:100%;background:#081524;border:1px solid #2a4057;border-radius:10px;padding:13px;color:white;font:500 15px 'DM Sans'}.results{display:grid;gap:12px}.result{background:#0a1727;border:1px solid #22364b;border-radius:13px;padding:16px}.result span{color:var(--muted);font-size:12px;display:block}.result b{font:700 24px 'Space Grotesk'}.paymentrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}.payment{background:#0a1727;border:1px solid #2a4057;border-radius:10px;padding:12px 15px;font-size:13px;font-weight:700}.payment small{display:block;color:var(--muted);font-weight:400;font-size:10px}.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.step{padding:17px;border:1px solid var(--line);background:var(--panel);border-radius:13px}.step strong{display:block;margin:8px 0}.step p{font-size:12px;color:var(--muted);margin:0}.number{color:var(--green);font:700 20px 'Space Grotesk'}footer{border-top:1px solid var(--line);padding:25px 0;color:var(--muted);font-size:12px}.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.smallprint{background:#101e2e;border:1px solid #4b4225;color:#d9cfae;padding:15px;border-radius:12px;font-size:12px;margin-top:28px}
-@media(max-width:800px){.hero,.calculator{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}.navlinks{gap:12px}.navlinks .optional{display:none}.sectionhead{display:block}.hero-card{margin-top:8px}}
-@media(max-width:480px){.wrap{padding:0 15px}.nav{height:64px}.navlinks{font-size:12px;gap:10px}.brand{font-size:16px}.pill{display:none}.flow{grid-template-columns:1fr}.statgrid{grid-template-columns:1fr 1fr}.hero h1{font-size:42px}}
+:root {
+  --bg:#07111f;
+  --panel:#101e30;
+  --panel2:#14253a;
+  --text:#f1f5fb;
+  --muted:#93a5bb;
+  --green:#37d6a0;
+  --line:#24374c;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  font-family:Inter,Arial,sans-serif;
+  color:var(--text);
+  background:var(--bg);
+}
+a { color:inherit;text-decoration:none; }
+button,input,select { font:inherit; }
+.topnote {
+  text-align:center;
+  padding:9px 14px;
+  background:#102b2a;
+  color:#9debd1;
+  font-size:12px;
+}
+nav {
+  max-width:1180px;
+  margin:auto;
+  padding:22px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.brand { font-size:21px;font-weight:800;letter-spacing:-.5px; }
+.brand span { color:var(--green); }
+.navlinks { display:flex;gap:24px;color:var(--muted);font-size:14px; }
+.btn {
+  display:inline-block;
+  border:0;
+  border-radius:9px;
+  padding:12px 17px;
+  font-weight:700;
+  cursor:pointer;
+}
+.btn-green { background:var(--green);color:#06241c; }
+.btn-dark { background:var(--panel2);color:var(--text);border:1px solid var(--line); }
+.container { max-width:1180px;margin:auto;padding:0 24px; }
+.hero {
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:55px;
+  align-items:center;
+  padding-top:64px;
+  padding-bottom:64px;
+}
+.eyebrow {
+  color:var(--green);
+  text-transform:uppercase;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:1.7px;
+}
+h1 { font-size:clamp(38px,5vw,62px);line-height:1.06;letter-spacing:-2px;margin:18px 0; }
+h1 span { color:var(--green); }
+.lead { color:var(--muted);font-size:17px;line-height:1.8;max-width:590px; }
+.actions { display:flex;gap:12px;flex-wrap:wrap;margin-top:26px; }
+.panel {
+  background:linear-gradient(145deg,#13253a,#0d1929);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:25px;
+  box-shadow:0 24px 60px #0003;
+}
+.panelhead { display:flex;justify-content:space-between;align-items:center;gap:10px; }
+.pill {
+  border:1px solid #28574e;
+  color:var(--green);
+  background:#12342f;
+  padding:6px 9px;
+  border-radius:30px;
+  font-size:11px;
+}
+.muted { color:var(--muted); }
+.balance { font-size:39px;font-weight:800;letter-spacing:-1px;margin:14px 0 7px; }
+.gain { color:var(--green);font-size:13px; }
+.stats { display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px; }
+.stat { padding:15px;background:#0a1726;border:1px solid var(--line);border-radius:11px; }
+.stat small { display:block;color:var(--muted);margin-bottom:9px; }
+.stat strong { font-size:17px; }
+.section { padding:54px 0; }
+.sectionhead {
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:25px;
+  margin-bottom:25px;
+}
+h2 { font-size:30px;letter-spacing:-.7px;margin:9px 0; }
+.sectionhead p { max-width:510px;color:var(--muted);line-height:1.7;margin:0; }
+.grid3 { display:grid;grid-template-columns:repeat(3,1fr);gap:18px; }
+.card {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:23px;
+}
+.card.featured { border-color:#27866c;box-shadow:inset 0 2px var(--green); }
+.card h3 { margin:10px 0;font-size:20px; }
+.card p { color:var(--muted);font-size:14px;line-height:1.7; }
+.tag { font-size:11px;color:var(--green);font-weight:800;letter-spacing:1px; }
+.rate { font-size:28px;font-weight:800;margin:17px 0 5px; }
+.rate small { font-size:12px;color:var(--muted);font-weight:400; }
+ul.features { list-style:none;padding:0;margin:20px 0; }
+ul.features li { padding:9px 0;border-bottom:1px solid var(--line);font-size:13px;color:#d3ddeb; }
+ul.features li:before { content:"✓";color:var(--green);margin-right:9px; }
+.calculator {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+}
+.field { margin-bottom:17px; }
+label { display:block;font-size:13px;color:#c5d2e2;margin-bottom:8px; }
+input,select {
+  width:100%;
+  color:var(--text);
+  background:#091626;
+  border:1px solid var(--line);
+  border-radius:9px;
+  padding:13px;
+  outline:none;
+}
+input:focus,select:focus { border-color:var(--green); }
+.results {
+  background:#091626;
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:20px;
+}
+.result {
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:15px 0;
+  border-bottom:1px solid var(--line);
+  font-size:14px;
+}
+.result span { color:var(--muted); }
+.result strong { text-align:right; }
+.result.total strong { color:var(--green);font-size:19px; }
+.assets { display:grid;grid-template-columns:repeat(4,1fr);gap:13px; }
+.asset {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:18px;
+}
+.asseticon {
+  width:37px;height:37px;border-radius:50%;
+  display:grid;place-items:center;
+  background:#1b3548;color:var(--green);font-weight:800;
+  margin-bottom:15px;
+}
+.asset strong { display:block; }
+.asset small { display:block;color:var(--muted);margin-top:7px; }
+.risk {
+  margin:30px 0;
+  border:1px solid var(--line);
+  background:#0d1a2a;
+  border-radius:12px;
+  padding:18px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+}
+footer {
+  border-top:1px solid var(--line);
+  padding:27px 24px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+}
+.footinner { max-width:1180px;margin:auto; }
+@media(max-width:800px) {
+  .navlinks { display:none; }
+  .hero,.calculator { grid-template-columns:1fr; }
+  .hero { padding-top:35px;gap:30px; }
+  .grid3 { grid-template-columns:1fr; }
+  .assets { grid-template-columns:repeat(2,1fr); }
+  .sectionhead { align-items:start;flex-direction:column; }
+}
+@media(max-width:420px) {
+  .container { padding:0 16px; }
+  nav { padding:18px 16px; }
+  .balance { font-size:32px; }
+  .assets { grid-template-columns:1fr 1fr; }
+}
 </style>
 </head>
 <body>
-<div class="notice">EDUCATIONAL SIMULATION ONLY · FICTIONAL PACKAGES & TRANSACTIONS · NO MONEY ACCEPTED</div>
-<header><div class="wrap nav"><a class="brand" href="index.html"><span class="logo">F</span> FinanceHouse <span style="color:var(--muted);font-weight:500">LAB</span></a><nav class="navlinks"><a href="#packages">Packages</a><a href="#calculator">Fee lab</a><a class="optional" href="#flow">How to investigate</a><a class="pill" href="market-lab.html">Open Trading Lab ↗</a></nav></div></header>
-<main class="wrap">
-<section class="hero">
-<div><div class="eyebrow">A financial literacy demonstration</div><h1>Look beyond the balance. <span>Follow the money.</span></h1><p>Explore how investment promises, transaction fees, referral rules and polished trading screens can shape what people believe. Every number on this site is fictional and designed for discussion.</p><div class="actions"><a class="btn primary" href="#calculator">Test the fee model</a><a class="btn secondary" href="market-lab.html">Explore Trading Lab ↗</a></div><p class="tiny" style="margin-top:17px">No account creation. No deposits. No payment processing. No investment advice.</p></div>
-<div class="hero-card"><div class="cardtop"><span>Illustrative account overview</span><span class="demo-badge">SIMULATED</span></div><div class="tiny" style="margin-top:22px">Displayed balance</div><div class="big-number">$6,482.50</div><div class="positive" style="font-size:13px">+$482.50 <span class="tiny">displayed gain · not verified profit</span></div><svg class="mini-chart" viewBox="0 0 500 100" preserveAspectRatio="none" aria-label="Illustrative balance line"><defs><linearGradient id="fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#37e0a1" stop-opacity=".25"/><stop offset="1" stop-color="#37e0a1" stop-opacity="0"/></linearGradient></defs><path d="M0,80 C30,76 38,55 68,61 S110,82 140,53 S180,65 210,42 S260,60 290,32 S330,43 360,22 S420,38 450,14 S480,25 500,8 L500,100 L0,100Z" fill="url(#fill)"/><path d="M0,80 C30,76 38,55 68,61 S110,82 140,53 S180,65 210,42 S260,60 290,32 S330,43 360,22 S420,38 450,14 S480,25 500,8" fill="none" stroke="#37e0a1" stroke-width="3"/></svg><div class="statgrid"><div class="stat"><span>Package</span><b>Growth Plus</b></div><div class="stat"><span>Referral status</span><b>3 / 5</b></div><div class="stat"><span>Withdrawal status</span><b style="color:#ffd37c">Pending</b></div></div><p class="tiny" style="margin-bottom:0">This example shows why a screen balance is not the same as independently verified assets.</p></div>
-</section>
-<section class="section" id="packages"><div class="sectionhead"><div><div class="eyebrow">Illustrative packages</div><h2>Investment tiers</h2></div><p>These fictional package cards demonstrate how tiered return promises can be presented. They are not real offers or forecasts.</p></div><div class="grid3">
-<article class="package"><span class="tag">STARTER</span><h3>Essential</h3><div class="amount">$100–$499</div><div class="tiny">Illustrative monthly ROI claim: 8%</div><ul><li>Dashboard balance display</li><li>Simulated trade history</li><li>Example fee schedule</li></ul><button class="btn secondary" onclick="selectAmount(250)">Use $250 example</button></article>
-<article class="package featured"><span class="tag">POPULAR EXAMPLE</span><h3>Growth Plus</h3><div class="amount">$500–$1,999</div><div class="tiny">Illustrative monthly ROI claim: 15%</div><ul><li>Example trading dashboard</li><li>Referral requirement demonstration</li><li>Withdrawal fee calculator</li></ul><button class="btn primary" onclick="selectAmount(500)">Use $500 example</button></article>
-<article class="package"><span class="tag">ADVANCED</span><h3>Wealth Max</h3><div class="amount">$2,000+</div><div class="tiny">Illustrative monthly ROI claim: 25%</div><ul><li>Tiered promise comparison</li><li>Illustrative referral bonus</li><li>Evidence checklist</li></ul><button class="btn secondary" onclick="selectAmount(2000)">Use $2,000 example</button></article>
-</div><p class="tiny" style="margin-top:12px">The monthly figures are deliberately hypothetical examples of claims to scrutinise—not genuine rates, realistic expectations, or an endorsement.</p></section>
-<section class="section" id="calculator"><div class="sectionhead"><div><div class="eyebrow">Interactive calculator</div><h2>What do the fees do?</h2></div><p>Change the amount and fee assumptions. The result updates instantly using simple arithmetic.</p></div>
-<div class="card calculator"><div><div class="field"><label for="deposit">Example deposit (USD)</label><input id="deposit" type="number" min="0" value="500" oninput="calc()"></div><div class="field"><label for="df">Deposit fee (%)</label><input id="df" type="number" min="0" max="100" value="10" oninput="calc()"></div><div class="field"><label for="wf">Withdrawal fee (%)</label><input id="wf" type="number" min="0" max="100" value="40" oninput="calc()"></div><div class="field"><label for="refs">Referral gate before withdrawal</label><select id="refs" onchange="calc()"><option value="5">5 referrals required (example)</option><option value="0">No referral gate</option><option value="6">6 referrals required (example)</option></select></div></div><div class="results"><div class="result"><span>Deposit fee deducted</span><b id="depositFee">$50.00</b></div><div class="result"><span>Amount credited after deposit fee</span><b id="credited">$450.00</b></div><div class="result"><span>Illustrative withdrawal fee on credited amount</span><b id="withdrawFee">$180.00</b></div><div class="result"><span>Net after both fees (no market gain/loss)</span><b id="net">$270.00</b></div><div class="result"><span>Referral condition</span><b id="gate" style="font-size:18px;color:#ffd37c">5 referrals required</b></div><p class="tiny">This calculator applies the withdrawal fee to the post-deposit-fee amount. Actual fee bases can differ. It does not model real account rules or transactions.</p></div></div></section>
-<section class="section"><div class="sectionhead"><div><div class="eyebrow">Illustrative payment options</div><h2>Crypto & card labels</h2></div><p>These are included to show how a platform may display payment methods. Nothing here accepts or initiates payments.</p></div><div class="paymentrow"><div class="payment">₮ USDT <small>Example stablecoin label</small></div><div class="payment">₿ BTC <small>Example crypto label</small></div><div class="payment">◆ ETH <small>Example crypto label</small></div><div class="payment">VISA <small>Card brand illustration</small></div><div class="payment">Mastercard <small>Card brand illustration</small></div><div class="payment">Bank transfer <small>Illustrative option</small></div></div><div class="smallprint">Demonstration only: no wallet addresses, QR payment requests, card forms, payment gateways, deposits or withdrawals are implemented. A payment logo or method label does not prove a business has a functioning payment channel or that it holds customer funds.</div></section>
-<section class="section" id="flow"><div class="sectionhead"><div><div class="eyebrow">Investigation checklist</div><h2>How to test the story</h2></div><p>Ask what evidence supports each claim, rather than relying on the interface alone.</p></div><div class="flow"><div class="step"><div class="number">01</div><strong>Trace deposits</strong><p>Are deposits independently recorded? Can wallet addresses and transaction hashes be verified on-chain?</p></div><div class="step"><div class="number">02</div><strong>Verify trading</strong><p>Do exchange statements show actual executions, fees, positions and realised profit?</p></div><div class="step"><div class="number">03</div><strong>Trace payouts</strong><p>Can each withdrawal be reconciled with bank, payment-provider or blockchain records?</p></div><div class="step"><div class="number">04</div><strong>Test sustainability</strong><p>Can payouts be funded by independently verified profits, without depending on new deposits?</p></div></div></section>
-<div class="smallprint"><b>Important:</b> This is a fictional financial-literacy exhibit. It is not affiliated with any real platform, does not accuse any named company of wrongdoing, and does not establish whether any particular business is fraudulent. Claims require independent evidence.</div>
-</main><footer><div class="wrap foot"><span>© FinanceHouse Lab · Cybersecurity & financial literacy demo</span><span>Simulation only · No financial services · No payment processing</span></div></footer>
+
+<div class="topnote">
+  NOVAVEST DIGITAL · FICTIONAL PRODUCT PROTOTYPE · NO REAL INVESTMENTS OR TRANSACTIONS
+</div>
+
+<nav>
+  <a class="brand" href="#">NovaVest<span> Digital</span></a>
+  <div class="navlinks">
+    <a href="#strategies">Strategies</a>
+    <a href="#markets">Markets</a>
+    <a href="#calculator">Calculator</a>
+  </div>
+  <a href="#calculator" class="btn btn-green">Explore Strategies</a>
+</nav>
+
+<main class="container">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Digital asset portfolio solutions</div>
+      <h1>Build your digital future with <span>crypto & NFTs.</span></h1>
+      <p class="lead">
+        Explore digital-asset strategy concepts spanning cryptocurrency
+        markets, blockchain ecosystems and NFT collections. Compare
+        hypothetical portfolio scenarios and see how different return
+        assumptions affect your investment over time.
+      </p>
+      <div class="actions">
+        <a href="#strategies" class="btn btn-green">View Strategies</a>
+        <a href="#calculator" class="btn btn-dark">Calculate Growth</a>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panelhead">
+        <span class="muted">Sample portfolio overview</span>
+        <span class="pill">DEMO ACCOUNT</span>
+      </div>
+      <div class="muted" style="margin-top:28px;font-size:13px">Illustrative portfolio value</div>
+      <div class="balance">$6,482.50</div>
+      <div class="gain">+8.04% hypothetical period return</div>
+      <div class="stats">
+        <div class="stat">
+          <small>Crypto allocation</small>
+          <strong>65%</strong>
+        </div>
+        <div class="stat">
+          <small>NFT allocation</small>
+          <strong>20%</strong>
+        </div>
+        <div class="stat">
+          <small>Other digital assets</small>
+          <strong>15%</strong>
+        </div>
+        <div class="stat">
+          <small>Account status</small>
+          <strong style="color:var(--green)">Simulation</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="strategies">
+    <div class="sectionhead">
+      <div>
+        <div class="eyebrow">Portfolio strategy profiles</div>
+        <h2>Explore investment strategies</h2>
+      </div>
+      <p>
+        Compare sample portfolio profiles with different risk levels,
+        asset mixes and hypothetical monthly return assumptions.
+      </p>
+    </div>
+
+    <div class="grid3">
+      <article class="card">
+        <div class="tag">01 / CONSERVATIVE SCENARIO</div>
+        <h3>Digital Core</h3>
+        <p>A sample portfolio concept focused on established digital assets and a lower assumed growth rate.</p>
+        <div class="rate">2% <small>/ month assumed</small></div>
+        <ul class="features">
+          <li>Bitcoin and Ethereum exposure</li>
+          <li>Illustrative six-month projection</li>
+          <li>Lower assumed return scenario</li>
+          <li>Market losses remain possible</li>
+        </ul>
+        <button class="btn btn-dark" onclick="chooseStrategy(2)">Calculate Scenario</button>
+      </article>
+
+      <article class="card featured">
+        <div class="tag">02 / GROWTH SCENARIO</div>
+        <h3>Digital Growth</h3>
+        <p>A sample higher-volatility strategy concept combining crypto assets and blockchain-related opportunities.</p>
+        <div class="rate">8% <small>/ month assumed</small></div>
+        <ul class="features">
+          <li>Multi-asset crypto scenario</li>
+          <li>Growth-focused assumptions</li>
+          <li>Compound-growth calculator</li>
+          <li>High volatility and loss risk</li>
+        </ul>
+        <button class="btn btn-green" onclick="chooseStrategy(8)">Calculate Scenario</button>
+      </article>
+
+      <article class="card">
+        <div class="tag">03 / HIGH-RISK SCENARIO</div>
+        <h3>Digital Frontier</h3>
+        <p>A purely hypothetical high-risk scenario illustrating the effect of aggressive return assumptions.</p>
+        <div class="rate">15% <small>/ month assumed</small></div>
+        <ul class="features">
+          <li>Crypto and NFT concepts</li>
+          <li>High-volatility scenario</li>
+          <li>Illustrative compounded growth</li>
+          <li>Substantial losses possible</li>
+        </ul>
+        <button class="btn btn-dark" onclick="chooseStrategy(15)">Calculate Scenario</button>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="markets">
+    <div class="sectionhead">
+      <div>
+        <div class="eyebrow">Digital asset ecosystem</div>
+        <h2>Markets & asset classes</h2>
+      </div>
+      <p>Explore categories used in the fictional portfolio model.</p>
+    </div>
+    <div class="assets">
+      <div class="asset"><div class="asseticon">₿</div><strong>Bitcoin</strong><small>Digital currency</small></div>
+      <div class="asset"><div class="asseticon">Ξ</div><strong>Ethereum</strong><small>Smart contracts</small></div>
+      <div class="asset"><div class="asseticon">◎</div><strong>Solana</strong><small>Blockchain ecosystem</small></div>
+      <div class="asset"><div class="asseticon">◇</div><strong>NFTs</strong><small>Digital collectibles</small></div>
+    </div>
+  </section>
+
+  <section class="section" id="calculator">
+    <div class="sectionhead">
+      <div>
+        <div class="eyebrow">Portfolio projection tool</div>
+        <h2>Investment calculator</h2>
+      </div>
+      <p>
+        Change the starting capital, assumed return, duration and fee
+        to explore different hypothetical outcomes.
+      </p>
+    </div>
+
+    <div class="panel calculator">
+      <div>
+        <div class="field">
+          <label for="principal">Starting investment (USD)</label>
+          <input id="principal" type="number" min="0" value="500" oninput="calculate()">
+        </div>
+        <div class="field">
+          <label for="monthlyRate">Assumed monthly return</label>
+          <select id="monthlyRate" onchange="calculate()">
+            <option value="-5">-5% · Loss scenario</option>
+            <option value="2">2% · Lower-growth scenario</option>
+            <option value="5">5% · Higher-growth scenario</option>
+            <option value="8" selected>8% · High-risk scenario</option>
+            <option value="15">15% · Extreme scenario</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="duration">Projection period</label>
+          <select id="duration" onchange="calculate()">
+            <option value="1">1 month</option>
+            <option value="3">3 months</option>
+            <option value="6" selected>6 months</option>
+            <option value="12">12 months</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fee">Example exit fee (%)</label>
+          <input id="fee" type="number" min="0" max="100" value="5" oninput="calculate()">
+        </div>
+      </div>
+
+      <div class="results">
+        <div class="result"><span>Starting capital</span><strong id="startValue">$500.00</strong></div>
+        <div class="result"><span>Projected value before fee</span><strong id="projected">$793.44</strong></div>
+        <div class="result"><span>Hypothetical gain / loss</span><strong id="profit">$293.44</strong></div>
+        <div class="result"><span>Example exit fee</span><strong id="exitFee">$39.67</strong></div>
+        <div class="result total"><span>Illustrative value after fee</span><strong id="netValue">$753.77</strong></div>
+        <p class="muted" style="font-size:12px;line-height:1.7;margin-bottom:0">
+          The calculator assumes a constant monthly rate and compounding.
+          Real crypto and NFT returns are unpredictable and may be negative.
+          These figures are not a forecast or promise of earnings.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="risk">
+    <strong style="color:var(--text)">Prototype and risk disclosure</strong><br>
+    NovaVest Digital is a fictional interface for educational demonstration.
+    Portfolio balances, strategy profiles and projected figures are sample data.
+    No customer funds, real investments, NFT purchases, wallet connections,
+    deposits, withdrawals or payment processing are implemented. Digital assets
+    can be highly volatile, illiquid and subject to total loss.
+  </div>
+</main>
+
+<footer>
+  <div class="footinner">
+    <strong style="color:var(--text)">NovaVest Digital</strong><br>
+    Fictional digital-asset portfolio prototype. Not a financial services provider,
+    investment adviser, exchange or custodian.
+    <br>© <span id="year"></span> NovaVest Digital
+  </div>
+</footer>
+
 <script>
-function money(n){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(Number.isFinite(n)?n:0)}
-function calc(){let a=Math.max(0,Number(document.getElementById('deposit').value)||0),d=Math.min(100,Math.max(0,Number(document.getElementById('df').value)||0))/100,w=Math.min(100,Math.max(0,Number(document.getElementById('wf').value)||0))/100;let fee=a*d,credited=a-fee,wfee=credited*w,net=credited-wfee;document.getElementById('depositFee').textContent=money(fee);document.getElementById('credited').textContent=money(credited);document.getElementById('withdrawFee').textContent=money(wfee);document.getElementById('net').textContent=money(net);let r=Number(document.getElementById('refs').value);document.getElementById('gate').textContent=r===0?'No referral gate in this example':r+' referrals required'}
-function selectAmount(n){document.getElementById('deposit').value=n;calc();document.getElementById('calculator').scrollIntoView({behavior:'smooth'})}calc();
+function usd(value) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD"
+  }).format(Number.isFinite(value) ? value : 0);
+}
+
+function calculate() {
+  const principal = Math.max(0, Number(document.getElementById("principal").value) || 0);
+  const monthlyRate = (Number(document.getElementById("monthlyRate").value) || 0) / 100;
+  const months = Math.max(1, Number(document.getElementById("duration").value) || 1);
+  const feeRate = Math.min(100, Math.max(0, Number(document.getElementById("fee").value) || 0)) / 100;
+
+  const projected = principal * Math.pow(1 + monthlyRate, months);
+  const gain = projected - principal;
+  const exitFee = projected * feeRate;
+  const net = projected - exitFee;
+
+  document.getElementById("startValue").textContent = usd(principal);
+  document.getElementById("projected").textContent = usd(projected);
+
+  const profitElement = document.getElementById("profit");
+  profitElement.textContent = (gain > 0 ? "+" : "") + usd(gain);
+  profitElement.style.color = gain < 0 ? "#ff8585" : "var(--green)";
+
+  document.getElementById("exitFee").textContent = usd(exitFee);
+  document.getElementById("netValue").textContent = usd(net);
+}
+
+function chooseStrategy(rate) {
+  document.getElementById("monthlyRate").value = String(rate);
+  calculate();
+  document.getElementById("calculator").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+document.getElementById("year").textContent = new Date().getFullYear();
+calculate();
 </script>
-</body></html>
+</body>
+</html>
