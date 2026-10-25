@@ -1,52 +1,438 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Trading Lab — FinanceHouse Lab</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Lab | FinanceHouse</title>
 <style>
-:root{--bg:#07111f;--panel:#0d1b2c;--panel2:#11243a;--line:#22364b;--muted:#91a6bf;--text:#edf5ff;--green:#37e0a1;--red:#ff7285;--yellow:#ffd37c;--blue:#6ea8ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 40% 0%,#102945 0,transparent 38%),var(--bg);color:var(--text);font-family:'DM Sans',sans-serif}.notice{background:#342a12;color:#ffe7a2;text-align:center;padding:9px 12px;font-size:11px;font-weight:800;letter-spacing:.04em}header{border-bottom:1px solid var(--line)}.wrap{max-width:1400px;margin:auto;padding:0 20px}.nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{display:flex;gap:10px;align-items:center;font:700 18px 'Space Grotesk';text-decoration:none;color:white}.logo{width:32px;height:32px;display:grid;place-items:center;border-radius:10px;background:linear-gradient(135deg,var(--green),#1c96b8);color:#05251b}.nav a.link{color:#b7c6d9;text-decoration:none;font-size:13px}.tag{border:1px solid #396c60;color:var(--green);border-radius:7px;padding:5px 8px;font-size:10px;font-weight:800;letter-spacing:.07em}.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:23px 0 18px}.topline h1{font:700 28px 'Space Grotesk';margin:0}.muted{color:var(--muted)}.small{font-size:11px}.layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(300px,.85fr);gap:16px;padding-bottom:40px}.panel{background:linear-gradient(160deg,#0f1e31,#0b1727);border:1px solid var(--line);border-radius:15px;overflow:hidden}.panelhead{padding:15px 17px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px}.panelhead h2{font-size:14px;margin:0}.panelbody{padding:17px}.pricegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.coin{background:#091626;border:1px solid #20334a;border-radius:11px;padding:13px}.coinhead{display:flex;gap:8px;align-items:center;font-size:12px;font-weight:700}.coinicon{width:26px;height:26px;border-radius:50%;background:#1c3149;display:grid;place-items:center}.price{font:700 19px 'Space Grotesk';margin:8px 0 2px}.change{font-size:11px}.up{color:var(--green)}.down{color:var(--red)}.chartbar{display:flex;gap:8px;align-items:center}.chartbar button,.btn{border:1px solid #2b425b;border-radius:8px;padding:7px 10px;background:#11243a;color:#d8e6f7;font:600 11px 'DM Sans';cursor:pointer}.chartbar button.active,.btn.primary{background:var(--green);color:#06251b;border-color:var(--green)}canvas{display:block;width:100%;height:270px}.chartfoot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:8px}.ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:16px 0;display:flex;gap:25px;overflow:hidden;white-space:nowrap;font-size:11px;color:#c6d5e7}.rightcol{display:grid;gap:16px;align-content:start}.balance{font:700 31px 'Space Grotesk';margin:8px 0}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{background:#091626;border:1px solid #1f3247;border-radius:10px;padding:12px}.metric span{display:block;color:var(--muted);font-size:11px}.metric b{font-size:15px}.tradeform{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:13px}.tradeform label{display:block;color:var(--muted);font-size:11px;margin-bottom:6px}.tradeform input,.tradeform select{width:100%;background:#071321;border:1px solid #294058;color:white;border-radius:8px;padding:10px;font:13px 'DM Sans'}.tradeform .wide{grid-column:1/-1}.tradebuttons{display:flex;gap:8px}.tradebuttons button{flex:1;padding:10px}.table{width:100%;border-collapse:collapse;font-size:11px}.table th{text-align:left;color:var(--muted);font-weight:500;padding:9px 6px;border-bottom:1px solid var(--line)}.table td{padding:10px 6px;border-bottom:1px solid #1b2d40}.chat{height:230px;overflow:auto;display:flex;flex-direction:column;gap:11px}.msg{font-size:12px;background:#102239;border:1px solid #223b54;padding:10px;border-radius:10px}.msg .meta{display:flex;justify-content:space-between;color:var(--muted);font-size:10px;margin-bottom:5px}.msg strong{color:#dbe8f9}.chatform{display:flex;gap:7px;margin-top:12px}.chatform input{flex:1;min-width:0;background:#071321;border:1px solid #294058;border-radius:8px;color:white;padding:10px}.analysis{font-size:12px;line-height:1.6;color:#c5d4e6}.analysis strong{color:var(--green)}.warning{background:#2b2517;border:1px solid #65542a;color:#f4dfab;border-radius:10px;padding:12px;font-size:11px;line-height:1.5}.statusdot{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;margin-right:6px}.bottom{padding:20px 0 28px;color:var(--muted);font-size:11px;border-top:1px solid var(--line)}@media(max-width:980px){.layout{grid-template-columns:1fr}.rightcol{grid-template-columns:1fr 1fr}.rightcol .panel:last-child{grid-column:1/-1}}@media(max-width:650px){.wrap{padding:0 12px}.rightcol{grid-template-columns:1fr}.rightcol .panel:last-child{grid-column:auto}.pricegrid{grid-template-columns:1fr 1fr}.topline h1{font-size:22px}.chartbar{flex-wrap:wrap}canvas{height:220px}.nav{height:60px}}
+:root{--bg:#080f1b;--panel:#111d2d;--panel2:#16263b;--border:#27384d;--text:#edf4fc;--muted:#96a9bf;--green:#36d6a0;--red:#ff747e;--gold:#e9bd68}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px Arial,sans-serif}
+a{color:inherit;text-decoration:none}
+header{padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.logo{font-size:23px;font-weight:800}.logo span{color:var(--green)}
+nav{display:flex;gap:20px;flex-wrap:wrap}nav a{color:var(--muted)}nav a:hover{color:var(--green)}
+.notice{padding:11px 5%;background:#33291a;color:#f2d59a;font-size:11px;letter-spacing:.7px}
+main{max-width:1350px;margin:auto;padding:28px 20px 55px}
+.heading{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+h1{font-size:28px;margin:0 0 8px}h2{font-size:17px;margin:0 0 17px}
+.muted{color:var(--muted);line-height:1.6}
+.pill{border:1px solid var(--border);border-radius:25px;padding:8px 11px;color:var(--muted);font-size:11px}
+.grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(270px,.8fr);gap:17px;margin-top:23px}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:13px;padding:20px;min-width:0}
+.price-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.asset{font-size:18px;font-weight:bold}.price{font-size:26px;font-weight:bold;margin-top:8px}
+.green{color:var(--green)}.red{color:var(--red)}.gold{color:var(--gold)}
+canvas{display:block;width:100%;height:285px;background:#0a1523;border-radius:9px}
+.chart-legend{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-top:12px}
+.controls{display:flex;gap:7px;flex-wrap:wrap;margin:15px 0}
+button,select,input{font:inherit}
+button{cursor:pointer;border:1px solid var(--border);border-radius:7px;padding:10px 13px;background:var(--panel2);color:var(--text)}
+button:hover{filter:brightness(1.15)}
+button.active{border-color:var(--green);color:var(--green)}
+.trade{background:var(--green);border:0;color:#052116;font-weight:bold}
+.trade.sell{background:#ff747e;color:#2a090c}
+input,select{width:100%;padding:12px;border-radius:8px;border:1px solid var(--border);background:#091522;color:var(--text);margin:8px 0 14px}
+label{font-size:12px;color:var(--muted)}
+.full{width:100%}
+.metric{padding:13px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;gap:12px}
+.metric:last-child{border-bottom:0}
+.ai-tag{display:inline-block;font-size:10px;color:var(--green);border:1px solid #276b56;border-radius:5px;padding:5px 7px;margin-bottom:12px}
+.analysis{padding:14px;background:#0a1724;border:1px solid var(--border);border-radius:9px;line-height:1.65}
+.news{padding:13px 0;border-bottom:1px solid var(--border)}
+.news:last-child{border:0}.news-title{font-weight:bold;line-height:1.45;margin-bottom:6px}
+.news-meta{font-size:11px;color:var(--muted);margin-bottom:7px}
+.signals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:17px}
+.signal{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:17px}
+.signal strong{font-size:17px}
+.section{margin-top:22px}
+.positions{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:460px}
+th,td{padding:13px 10px;border-bottom:1px solid var(--border);text-align:left}
+th{font-size:11px;color:var(--muted);font-weight:normal}
+.disclaimer{margin-top:20px;background:#171d27;border-left:3px solid var(--gold);padding:14px;color:#bdc8d6;font-size:12px;line-height:1.65}
+footer{text-align:center;padding:23px;border-top:1px solid var(--border);color:var(--muted);font-size:12px}
+@media(max-width:850px){.grid{grid-template-columns:1fr}.signals{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="notice">SIMULATION MODE · NO REAL TRADES · CHAT IS LOCAL TO THIS BROWSER · NO INVESTMENT SIGNALS</div>
-<header><div class="wrap nav"><a class="brand" href="index.html"><span class="logo">F</span> FinanceHouse <span class="muted" style="font-weight:500">LAB</span></a><div style="display:flex;gap:18px;align-items:center"><span class="tag">DEMO ENVIRONMENT</span><a class="link" href="index.html">← Home</a></div></div></header>
-<div class="wrap">
-<div class="topline"><div><div class="muted small">MARKETS / SIMULATED TERMINAL</div><h1>Trading Lab</h1></div><div class="muted small" id="marketStatus">Loading public prices…</div></div>
-<div class="layout">
-<div class="leftcol">
-<section class="panel"><div class="panelhead"><h2>Market overview</h2><span class="muted small" id="priceSource">Fallback simulation until feed loads</span></div><div class="panelbody"><div class="pricegrid" id="pricegrid">
-<div class="coin"><div class="coinhead"><span class="coinicon">₿</span>Bitcoin <span class="muted">BTC</span></div><div class="price" id="p-btc">$67,400.00</div><div class="change up" id="c-btc">+1.24%</div></div>
-<div class="coin"><div class="coinhead"><span class="coinicon">◆</span>Ethereum <span class="muted">ETH</span></div><div class="price" id="p-eth">$3,420.00</div><div class="change up" id="c-eth">+0.62%</div></div>
-<div class="coin"><div class="coinhead"><span class="coinicon">◎</span>Solana <span class="muted">SOL</span></div><div class="price" id="p-sol">$154.20</div><div class="change down" id="c-sol">−0.31%</div></div></div>
-<div class="ticker"><span>BTC/USD <b id="t-btc">$67,400</b></span><span>ETH/USD <b id="t-eth">$3,420</b></span><span>SOL/USD <b id="t-sol">$154.20</b></span><span>FEED <b id="tickerStatus">SIMULATED</b></span></div>
-<div class="panelhead" style="padding:0 0 12px;border:0"><h2 id="chartTitle">BTC/USD · illustrative price movement</h2><div class="chartbar"><button class="active" onclick="chooseCoin('BTC',this)">BTC</button><button onclick="chooseCoin('ETH',this)">ETH</button><button onclick="chooseCoin('SOL',this)">SOL</button></div></div><canvas id="chart" width="900" height="300" aria-label="Price chart"></canvas><div class="chartfoot small muted"><span id="chartNote">Chart updates as new points arrive</span><span>USD · demo chart</span></div></div></section>
-<section class="panel" style="margin-top:16px"><div class="panelhead"><h2>Simulated trade history</h2><span class="tag">VIRTUAL FUNDS</span></div><div class="panelbody" style="overflow-x:auto"><table class="table"><thead><tr><th>Asset</th><th>Side</th><th>Entry</th><th>Exit</th><th>Result</th><th>Status</th></tr></thead><tbody id="trades"><tr><td>BTC/USD</td><td class="up">BUY</td><td>$67,100</td><td>$67,450</td><td class="up">+$3.50</td><td>Closed · demo</td></tr><tr><td>ETH/USD</td><td class="down">SELL</td><td>$3,440</td><td>$3,451</td><td class="down">−$1.10</td><td>Closed · demo</td></tr></tbody></table></div></section>
-</div>
-<aside class="rightcol">
-<section class="panel"><div class="panelhead"><h2>Demo portfolio</h2><span class="tag">NOT REAL MONEY</span></div><div class="panelbody"><div class="muted small">Virtual account equity</div><div class="balance" id="equity">$10,000.00</div><div class="metrics"><div class="metric"><span>Open P/L</span><b class="up" id="pnl">+$0.00</b></div><div class="metric"><span>Win rate in sample</span><b id="winrate">72%</b></div><div class="metric"><span>Virtual cash</span><b id="cash">$10,000.00</b></div><div class="metric"><span>Trades today</span><b id="tradecount">12</b></div></div><div class="tradeform"><div><label for="asset">Asset</label><select id="asset"><option value="BTC">BTC/USD</option><option value="ETH">ETH/USD</option><option value="SOL">SOL/USD</option></select></div><div><label for="side">Side</label><select id="side"><option>BUY</option><option>SELL</option></select></div><div><label for="size">Virtual amount (USD)</label><input id="size" type="number" value="100" min="1" max="10000"></div><div><label for="leverage">Leverage (illustrative)</label><select id="leverage"><option value="1">1×</option><option value="2">2×</option><option value="5">5×</option></select></div><div class="wide tradebuttons"><button class="btn primary" onclick="placeTrade()">Place virtual trade</button><button class="btn" onclick="resetDemo()">Reset</button></div></div><p class="muted small">Orders only change this browser's fictional demo ledger. No exchange order is sent.</p></div></section>
-<section class="panel"><div class="panelhead"><h2>Signal room</h2><span class="tag">SCRIPTED CHAT</span></div><div class="panelbody"><div class="chat" id="chat"><div class="msg"><div class="meta"><b>Market Observer</b><span>10:02</span></div>BTC is above the demo's short moving average. This is a simulated observation, not a recommendation.</div><div class="msg"><div class="meta"><b>Risk Desk</b><span>10:04</span></div>Reminder: a high win-rate claim needs a complete, independently verifiable record including losing trades.</div><div class="msg"><div class="meta"><b>System</b><span>10:05</span></div>All signals in this room are scripted for education.</div></div><form class="chatform" onsubmit="postChat(event)"><input id="chatInput" maxlength="180" placeholder="Add a local observation…" aria-label="Add a local chat message"><button class="btn" type="submit">Post</button></form><p class="muted small">Messages are visible only in your current browser session.</p></div></section>
-<section class="panel"><div class="panelhead"><h2>AI-style market note</h2><span class="tag">RULE-BASED DEMO</span></div><div class="panelbody"><div class="analysis" id="analysis"><strong>Sample analysis:</strong> Short-term direction is uncertain. Price movement alone cannot establish a reliable edge. Check the strategy's full history, costs, slippage, drawdowns and out-of-sample results.</div><button class="btn primary" style="margin-top:14px" onclick="generateAnalysis()">Generate demo analysis</button><p class="muted small">This is not a connected AI model and does not provide live investment advice.</p></div></section>
-<div class="warning"><b>For the meeting:</b> A changing chart, signal feed or positive demo result does not prove actual exchange execution, profitable trading, custody of customer assets or sustainable payouts.</div>
-</aside>
-</div>
-<div class="bottom">FinanceHouse Lab · fictional financial-literacy exhibit · Prices may use a public third-party market-data API when available; otherwise the page uses labelled synthetic prices. No trading, payment or custody functions are implemented.</div>
-</div>
+<header>
+  <a class="logo" href="index.html">Finance<span>House</span></a>
+  <nav>
+    <a href="index.html">Dashboard</a>
+    <a href="market-lab.html">Market Lab</a>
+    <a href="#analysis">AI Analysis</a>
+    <a href="#news">Market News</a>
+    <a href="#trade">Trade Simulator</a>
+  </nav>
+</header>
+<div class="notice">SIMULATED MARKET TERMINAL · FICTIONAL PRICES AND ANALYSIS · VIRTUAL TRADES ONLY</div>
+
+<main>
+  <div class="heading">
+    <div>
+      <h1>Market Lab</h1>
+      <div class="muted">Market signals, chart analysis and strategy simulation.</div>
+    </div>
+    <span class="pill">DEMO FEED · NOT LIVE MARKET DATA</span>
+  </div>
+
+  <div class="grid">
+    <div>
+      <section class="panel">
+        <div class="price-head">
+          <div>
+            <div class="asset">Bitcoin / USD · BTC/USD</div>
+            <div class="muted" style="font-size:12px">Simulated spot market</div>
+            <div class="price" id="price">$67,420.00</div>
+            <div id="change" class="green">+0.00% · simulated movement</div>
+          </div>
+          <div>
+            <label for="assetSelect">Select asset</label>
+            <select id="assetSelect" onchange="changeAsset()">
+              <option value="BTC">Bitcoin · BTC</option>
+              <option value="ETH">Ethereum · ETH</option>
+              <option value="SOL">Solana · SOL</option>
+            </select>
+          </div>
+        </div>
+
+        <canvas id="chart" aria-label="Animated simulated asset price chart"></canvas>
+        <div class="chart-legend">
+          <span>● Simulated price series</span>
+          <span id="chartStatus">Demo feed running</span>
+        </div>
+        <div class="controls">
+          <button onclick="setWindow(20,this)">20 points</button>
+          <button class="active" onclick="setWindow(40,this)">40 points</button>
+          <button onclick="setWindow(60,this)">60 points</button>
+          <button onclick="addMovement()">Generate movement</button>
+        </div>
+      </section>
+
+      <section class="panel section" id="analysis">
+        <div class="ai-tag">FINANCEHOUSE AI · SIMULATED</div>
+        <h2>AI market analysis</h2>
+        <div class="analysis">
+          <strong id="aiTitle">Market conditions are being evaluated</strong>
+          <p id="aiText" class="muted">The simulated engine reviews recent price changes and produces a sample commentary. This is not a real AI service or a reliable trading signal.</p>
+          <div class="metric"><span>Short-term direction</span><strong id="trend">Calculating…</strong></div>
+          <div class="metric"><span>Illustrative momentum</span><strong id="momentum">—</strong></div>
+          <div class="metric"><span>Signal confidence</span><strong>Not provided</strong></div>
+        </div>
+      </section>
+
+      <section class="panel section" id="news">
+        <h2>Market news desk</h2>
+        <p class="muted">Sample headlines for the interface design — these are not current news reports.</p>
+        <div class="news">
+          <div class="news-meta">DEMO HEADLINE · CRYPTO MARKETS</div>
+          <div class="news-title">Digital asset volatility keeps traders focused on risk management</div>
+          <div class="muted">Illustrative editorial item. No real event or source is being reported.</div>
+        </div>
+        <div class="news">
+          <div class="news-meta">DEMO HEADLINE · BLOCKCHAIN</div>
+          <div class="news-title">Blockchain networks compete on speed, fees and developer activity</div>
+          <div class="muted">Illustrative editorial item. Not a verified market update.</div>
+        </div>
+        <div class="news">
+          <div class="news-meta">DEMO HEADLINE · INVESTOR EDUCATION</div>
+          <div class="news-title">Why a claimed high win rate does not guarantee positive returns</div>
+          <div class="muted">A high percentage of winning trades can still lose money if losses are larger than gains or fees are high.</div>
+        </div>
+      </section>
+    </div>
+
+    <aside>
+      <section class="panel" id="trade">
+        <h2>Trade simulator</h2>
+        <div class="muted">Account: virtual demo funds</div>
+        <div class="metric"><span>Virtual balance</span><strong id="cash">$500.00</strong></div>
+        <div class="metric"><span>Open position value</span><strong id="positionValue">$0.00</strong></div>
+        <div class="metric"><span>Estimated equity</span><strong id="equity">$500.00</strong></div>
+
+        <label for="side">Virtual order direction</label>
+        <select id="side">
+          <option value="buy">Buy / Long</option>
+          <option value="sell">Sell / Short</option>
+        </select>
+
+        <label for="amount">Virtual order amount (USD)</label>
+        <input id="amount" type="number" min="1" step="any" value="50">
+
+        <button class="trade full" onclick="simulateTrade()">Execute virtual trade</button>
+        <p class="muted" id="tradeMessage" aria-live="polite">No virtual trades executed yet.</p>
+      </section>
+
+      <section class="panel section">
+        <h2>Signal monitor</h2>
+        <div class="metric"><span>Reported platform allowance</span><strong>7 / day</strong></div>
+        <div class="metric"><span>Reported accuracy claim</span><strong>99%+</strong></div>
+        <div class="metric"><span>Signal status</span><strong class="gold">Demo only</strong></div>
+        <p class="muted">The figures are claims reported in the material being investigated. This page does not generate or verify genuine trading signals.</p>
+      </section>
+
+      <section class="panel section">
+        <h2>Strategy snapshot</h2>
+        <div class="metric"><span>Reference daily-return claim</span><strong>1.1%</strong></div>
+        <div class="metric"><span>Compounding</span><strong>Daily assumption</strong></div>
+        <div class="metric"><span>Realized return</span><strong>Not available</strong></div>
+        <a href="index.html#strategy" class="trade full" style="display:block;text-align:center;margin-top:16px">Open return calculator</a>
+      </section>
+    </aside>
+  </div>
+
+  <div class="signals">
+    <section class="signal">
+      <div class="muted">SIMULATED INDICATOR</div>
+      <p>Price direction</p>
+      <strong id="signalDirection">Neutral</strong>
+    </section>
+    <section class="signal">
+      <div class="muted">SIMULATED INDICATOR</div>
+      <p>Recent movement</p>
+      <strong id="signalMove">0.00%</strong>
+    </section>
+    <section class="signal">
+      <div class="muted">SIMULATED INDICATOR</div>
+      <p>Risk status</p>
+      <strong class="gold">Unverified / high uncertainty</strong>
+    </section>
+  </div>
+
+  <section class="panel section">
+    <h2>Virtual trade history</h2>
+    <div class="positions">
+      <table>
+        <thead><tr><th>Asset</th><th>Direction</th><th>Entry price</th><th>Virtual amount</th><th>Status</th></tr></thead>
+        <tbody id="tradeHistory">
+          <tr><td colspan="5" class="muted">No virtual trades yet.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="disclaimer">
+    <strong>Prototype disclosure:</strong> FinanceHouse is fictional. Prices move using local random simulation; the chart is not connected to an exchange. AI commentary and news are simulated. The Trade button only updates a virtual demo ledger in this page; it does not place a real order or move money. Refreshing the page resets the virtual session. No real account, wallet, deposits, withdrawals or financial advice are provided.
+  </div>
+</main>
+
+<footer>FinanceHouse Market Lab · Simulated interface · No live financial data</footer>
+
 <script>
-const coins={BTC:{price:67400,base:67400,el:'btc',history:[]},ETH:{price:3420,base:3420,el:'eth',history:[]},SOL:{price:154.2,base:154.2,el:'sol',history:[]}};
-let selected='BTC',liveFeed=false,cash=10000,equity=10000,tradeCount=12,historyTrades=[];
-Object.values(coins).forEach(c=>{for(let i=0;i<48;i++)c.history.push(c.base*(1+(Math.random()-.5)*.012))});
-const $=id=>document.getElementById(id);const fmt=(n,d=2)=>new Intl.NumberFormat('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}).format(n);const usd=n=>'$'+fmt(n);
-function draw(){const canvas=$('chart'),ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height;ctx.clearRect(0,0,w,h);ctx.strokeStyle='#20344a';ctx.lineWidth=1;for(let i=1;i<5;i++){let y=h*i/5;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke()}let a=coins[selected].history,min=Math.min(...a),max=Math.max(...a),range=max-min||1;ctx.beginPath();a.forEach((v,i)=>{let x=i*w/(a.length-1),y=h-18-(v-min)/range*(h-36);i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.strokeStyle='#37e0a1';ctx.lineWidth=3;ctx.stroke();ctx.lineTo(w,h);ctx.lineTo(0,h);ctx.closePath();ctx.fillStyle='rgba(55,224,161,.08)';ctx.fill();ctx.fillStyle='#91a6bf';ctx.font='12px DM Sans';ctx.fillText(usd(max),8,15);ctx.fillText(usd(min),8,h-6)}
-function updateDisplays(){Object.entries(coins).forEach(([key,c])=>{let e=$(('p-'+c.el));if(e)e.textContent=usd(c.price);let change=(c.price/c.base-1)*100,ce=$('c-'+c.el);ce.textContent=(change>=0?'+':'')+change.toFixed(2)+'%';ce.className='change '+(change>=0?'up':'down');$('t-'+c.el).textContent=usd(c.price, c.price<1000?2:0)});draw()}
-function tickSynthetic(){Object.values(coins).forEach(c=>{c.price*=1+(Math.random()-.5)*.0018;c.history.push(c.price);if(c.history.length>70)c.history.shift()});updateDisplays()}
-function chooseCoin(c,btn){selected=c;document.querySelectorAll('.chartbar button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');$('chartTitle').textContent=c+'/USD · '+(liveFeed?'public market data':'illustrative price movement');draw()}
-async function fetchPrices(){try{const r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true',{cache:'no-store'});if(!r.ok)throw Error('feed unavailable');const j=await r.json(),map={BTC:j.bitcoin,ETH:j.ethereum,SOL:j.solana};if(!map.BTC?.usd||!map.ETH?.usd||!map.SOL?.usd)throw Error('missing price');Object.entries(map).forEach(([k,v])=>{let c=coins[k];c.price=v.usd;c.base=v.usd*(1-(v.usd_24h_change||0)/100);c.history.push(v.usd);if(c.history.length>70)c.history.shift()});liveFeed=true;$('marketStatus').textContent='Public prices refreshed · '+new Date().toLocaleTimeString();$('priceSource').textContent='CoinGecko public API · price feed only';$('tickerStatus').textContent='PUBLIC PRICE FEED';$('chartTitle').textContent=selected+'/USD · public price snapshots';$('chartNote').textContent='Snapshots from public API; not tick-by-tick exchange data';updateDisplays()}catch(e){liveFeed=false;$('marketStatus').textContent='Price feed unavailable · simulated fallback';$('priceSource').textContent='Simulated fallback prices';$('tickerStatus').textContent='SIMULATED';$('chartNote').textContent='Synthetic prices update locally';}}
-function placeTrade(){let asset=$('asset').value,side=$('side').value,size=Math.max(1,Math.min(10000,Number($('size').value)||100)),lev=Number($('leverage').value),c=coins[asset];if(size>cash){alert('Not enough virtual cash. Reset the demo to restore the fictional balance.');return}let move=(Math.random()-.46)*.018*(side==='BUY'?1:-1),pnl=size*lev*move;cash-=size;equity=cash+size+pnl;tradeCount++;$('cash').textContent=usd(cash);$('equity').textContent=usd(equity);$('pnl').textContent=(pnl>=0?'+':'')+usd(pnl);$('pnl').className=pnl>=0?'up':'down';$('tradecount').textContent=tradeCount;let tr=document.createElement('tr');tr.innerHTML=`<td>${asset}/USD</td><td class="${side==='BUY'?'up':'down'}">${side}</td><td>${usd(c.price)}</td><td>${usd(c.price*(1+move))}</td><td class="${pnl>=0?'up':'down'}">${pnl>=0?'+':'−'}${usd(Math.abs(pnl))}</td><td>Closed · demo</td>`;$('trades').prepend(tr);historyTrades.push(pnl)}
-function resetDemo(){cash=10000;equity=10000;tradeCount=12;$('cash').textContent=usd(cash);$('equity').textContent=usd(equity);$('pnl').textContent='+$0.00';$('tradecount').textContent=12;$('trades').innerHTML='<tr><td>BTC/USD</td><td class="up">BUY</td><td>$67,100</td><td>$67,450</td><td class="up">+$3.50</td><td>Closed · demo</td></tr><tr><td>ETH/USD</td><td class="down">SELL</td><td>$3,440</td><td>$3,451</td><td class="down">−$1.10</td><td>Closed · demo</td></tr>';historyTrades=[]}
-function postChat(e){e.preventDefault();let input=$('chatInput'),s=input.value.trim();if(!s)return;let m=document.createElement('div');m.className='msg';let meta=document.createElement('div');meta.className='meta';let b=document.createElement('b');b.textContent='Meeting participant';let t=document.createElement('span');t.textContent=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});meta.append(b,t);let body=document.createElement('div');body.textContent=s;m.append(meta,body);$('chat').append(m);$('chat').scrollTop=$('chat').scrollHeight;input.value=''}
-function generateAnalysis(){let c=coins[selected],change=(c.price/c.base-1)*100,sign=change>=0?'higher':'lower';$('analysis').innerHTML='<strong>Rule-based demo note:</strong> '+selected+' is currently '+(change>=0?'above':'below')+' the illustrative reference by '+Math.abs(change).toFixed(2)+'%. This alone is not a buy/sell signal. Ask for the complete dated signal history, all wins and losses, execution records, fees, slippage, drawdown and independent verification. No strategy can guarantee fixed wins.'}
-updateDisplays();setInterval(tickSynthetic,1800);fetchPrices();setInterval(fetchPrices,60000);
+const canvas = document.getElementById("chart");
+const ctx = canvas.getContext("2d");
+
+const assets = {
+  BTC: { name: "Bitcoin", price: 67420 },
+  ETH: { name: "Ethereum", price: 3480.50 },
+  SOL: { name: "Solana", price: 182.30 }
+};
+
+let selected = "BTC";
+let basePrice = assets.BTC.price;
+let prices = [];
+let visiblePoints = 40;
+let startingPrice = basePrice;
+let cash = 500;
+let positions = [];
+let previousChange = 0;
+
+function money(n) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency", currency: "USD"
+  }).format(n);
+}
+
+function seedChart() {
+  prices = [];
+  let p = basePrice;
+  for (let i = 0; i < 60; i++) {
+    p *= 1 + (Math.random() - 0.49) * 0.004;
+    prices.push(p);
+  }
+  startingPrice = prices[0];
+  updateUI();
+  drawChart();
+}
+
+function changeAsset() {
+  selected = document.getElementById("assetSelect").value;
+  basePrice = assets[selected].price;
+  seedChart();
+}
+
+function setWindow(count, button) {
+  visiblePoints = count;
+  document.querySelectorAll(".controls button").forEach(b => b.classList.remove("active"));
+  button.classList.add("active");
+  drawChart();
+}
+
+function addMovement() {
+  tick();
+}
+
+function tick() {
+  const last = prices[prices.length - 1] || basePrice;
+  const next = last * (1 + (Math.random() - 0.49) * 0.0035);
+  prices.push(next);
+  if (prices.length > 100) prices.shift();
+
+  updateUI();
+  drawChart();
+}
+
+function drawChart() {
+  const rect = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = Math.max(1, Math.floor(rect.width * dpr));
+  canvas.height = Math.max(1, Math.floor(rect.height * dpr));
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const w = rect.width, h = rect.height;
+  ctx.clearRect(0, 0, w, h);
+
+  const data = prices.slice(-visiblePoints);
+  if (data.length < 2) return;
+
+  const min = Math.min(...data) * 0.999;
+  const max = Math.max(...data) * 1.001;
+  const pad = 18;
+  const y = p => h - pad - ((p - min) / (max - min || 1)) * (h - pad * 2);
+  const x = i => pad + i * (w - pad * 2) / (data.length - 1);
+
+  ctx.strokeStyle = "#26384d";
+  ctx.lineWidth = 1;
+  for (let i = 0; i < 5; i++) {
+    const gy = pad + i * (h - pad * 2) / 4;
+    ctx.beginPath();
+    ctx.moveTo(pad, gy);
+    ctx.lineTo(w - pad, gy);
+    ctx.stroke();
+  }
+
+  const rising = data[data.length - 1] >= data[0];
+  const lineColor = rising ? "#36d6a0" : "#ff747e";
+
+  ctx.beginPath();
+  data.forEach((p, i) => {
+    if (i === 0) ctx.moveTo(x(i), y(p));
+    else ctx.lineTo(x(i), y(p));
+  });
+  ctx.lineTo(x(data.length - 1), h - pad);
+  ctx.lineTo(x(0), h - pad);
+  ctx.closePath();
+  ctx.fillStyle = rising ? "rgba(54,214,160,.09)" : "rgba(255,116,126,.08)";
+  ctx.fill();
+
+  ctx.beginPath();
+  data.forEach((p, i) => {
+    if (i === 0) ctx.moveTo(x(i), y(p));
+    else ctx.lineTo(x(i), y(p));
+  });
+  ctx.strokeStyle = lineColor;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  ctx.fillStyle = "#96a9bf";
+  ctx.font = "11px Arial";
+  ctx.fillText("SIMULATED PRICE", pad, 13);
+}
+
+function updateUI() {
+  const current = prices[prices.length - 1] || basePrice;
+  const first = prices[0] || basePrice;
+  const pct = ((current - first) / first) * 100;
+  previousChange = pct;
+
+  document.getElementById("price").textContent = money(current);
+  const change = document.getElementById("change");
+  change.textContent = (pct >= 0 ? "+" : "") + pct.toFixed(2) + "% · simulated movement";
+  change.className = pct >= 0 ? "green" : "red";
+
+  const direction = pct > 0.08 ? "Upward" : pct < -0.08 ? "Downward" : "Sideways";
+  document.getElementById("trend").textContent = direction;
+  document.getElementById("momentum").textContent =
+    (pct >= 0 ? "+" : "") + pct.toFixed(2) + "%";
+  document.getElementById("signalDirection").textContent = direction;
+  document.getElementById("signalMove").textContent =
+    (pct >= 0 ? "+" : "") + pct.toFixed(2) + "%";
+
+  document.getElementById("aiTitle").textContent =
+    direction === "Upward" ? "Sample upward price movement" :
+    direction === "Downward" ? "Sample downward price movement" :
+    "Sample sideways price movement";
+
+  document.getElementById("aiText").textContent =
+    "The simulated series has moved " + (pct >= 0 ? "up " : "down ") +
+    Math.abs(pct).toFixed(2) + "% from its first visible point. " +
+    "This small sample cannot predict future prices. Consider volatility, fees, " +
+    "position size and the possibility of loss before interpreting any strategy.";
+
+  updateAccount();
+}
+
+function updateAccount() {
+  let value = 0;
+  positions.forEach(p => {
+    const now = prices[prices.length - 1] || basePrice;
+    value += p.amount * (now / p.entry);
+  });
+
+  document.getElementById("cash").textContent = money(cash);
+  document.getElementById("positionValue").textContent = money(value);
+  document.getElementById("equity").textContent = money(cash + value);
+}
+
+function simulateTrade() {
+  const amount = Number(document.getElementById("amount").value);
+  const side = document.getElementById("side").value;
+  const current = prices[prices.length - 1] || basePrice;
+
+  if (!Number.isFinite(amount) || amount <= 0) {
+    document.getElementById("tradeMessage").textContent =
+      "Enter a virtual order amount greater than zero.";
+    return;
+  }
+
+  if (amount > cash) {
+    document.getElementById("tradeMessage").textContent =
+      "Insufficient virtual cash for this order. No trade was recorded.";
+    return;
+  }
+
+  cash -= amount;
+  positions.push({
+    asset: selected,
+    side: side,
+    entry: current,
+    amount: amount
+  });
+
+  const history = document.getElementById("tradeHistory");
+  if (positions.length === 1) history.innerHTML = "";
+
+  const row = document.createElement("tr");
+  [selected, side === "buy" ? "Buy / Long" : "Sell / Short",
+   money(current), money(amount), "Virtual"].forEach(value => {
+    const cell = document.createElement("td");
+    cell.textContent = value;
+    row.appendChild(cell);
+  });
+  history.prepend(row);
+
+  document.getElementById("tradeMessage").textContent =
+    "Virtual " + side.toUpperCase() + " recorded for " + money(amount) +
+    " at " + money(current) + ". No real order was placed.";
+
+  updateAccount();
+}
+
+window.addEventListener("resize", drawChart);
+seedChart();
+setInterval(tick, 1800);
 </script>
-</body></html>
+</body>
+</html>
