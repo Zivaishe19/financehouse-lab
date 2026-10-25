@@ -4,460 +4,211 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NovaVest Digital | Crypto & NFT Portfolio</title>
+<title>FinanceHouse | Digital Asset Dashboard</title>
 <style>
-:root {
-  --bg:#07111f;
-  --panel:#101e30;
-  --panel2:#14253a;
-  --text:#f1f5fb;
-  --muted:#93a5bb;
-  --green:#37d6a0;
-  --line:#24374c;
-}
-* { box-sizing:border-box; }
-body {
-  margin:0;
-  font-family:Inter,Arial,sans-serif;
-  color:var(--text);
-  background:var(--bg);
-}
-a { color:inherit;text-decoration:none; }
-button,input,select { font:inherit; }
-.topnote {
-  text-align:center;
-  padding:9px 14px;
-  background:#102b2a;
-  color:#9debd1;
-  font-size:12px;
-}
-nav {
-  max-width:1180px;
-  margin:auto;
-  padding:22px 24px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-}
-.brand { font-size:21px;font-weight:800;letter-spacing:-.5px; }
-.brand span { color:var(--green); }
-.navlinks { display:flex;gap:24px;color:var(--muted);font-size:14px; }
-.btn {
-  display:inline-block;
-  border:0;
-  border-radius:9px;
-  padding:12px 17px;
-  font-weight:700;
-  cursor:pointer;
-}
-.btn-green { background:var(--green);color:#06241c; }
-.btn-dark { background:var(--panel2);color:var(--text);border:1px solid var(--line); }
-.container { max-width:1180px;margin:auto;padding:0 24px; }
-.hero {
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:55px;
-  align-items:center;
-  padding-top:64px;
-  padding-bottom:64px;
-}
-.eyebrow {
-  color:var(--green);
-  text-transform:uppercase;
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:1.7px;
-}
-h1 { font-size:clamp(38px,5vw,62px);line-height:1.06;letter-spacing:-2px;margin:18px 0; }
-h1 span { color:var(--green); }
-.lead { color:var(--muted);font-size:17px;line-height:1.8;max-width:590px; }
-.actions { display:flex;gap:12px;flex-wrap:wrap;margin-top:26px; }
-.panel {
-  background:linear-gradient(145deg,#13253a,#0d1929);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:25px;
-  box-shadow:0 24px 60px #0003;
-}
-.panelhead { display:flex;justify-content:space-between;align-items:center;gap:10px; }
-.pill {
-  border:1px solid #28574e;
-  color:var(--green);
-  background:#12342f;
-  padding:6px 9px;
-  border-radius:30px;
-  font-size:11px;
-}
-.muted { color:var(--muted); }
-.balance { font-size:39px;font-weight:800;letter-spacing:-1px;margin:14px 0 7px; }
-.gain { color:var(--green);font-size:13px; }
-.stats { display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px; }
-.stat { padding:15px;background:#0a1726;border:1px solid var(--line);border-radius:11px; }
-.stat small { display:block;color:var(--muted);margin-bottom:9px; }
-.stat strong { font-size:17px; }
-.section { padding:54px 0; }
-.sectionhead {
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  gap:25px;
-  margin-bottom:25px;
-}
-h2 { font-size:30px;letter-spacing:-.7px;margin:9px 0; }
-.sectionhead p { max-width:510px;color:var(--muted);line-height:1.7;margin:0; }
-.grid3 { display:grid;grid-template-columns:repeat(3,1fr);gap:18px; }
-.card {
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:15px;
-  padding:23px;
-}
-.card.featured { border-color:#27866c;box-shadow:inset 0 2px var(--green); }
-.card h3 { margin:10px 0;font-size:20px; }
-.card p { color:var(--muted);font-size:14px;line-height:1.7; }
-.tag { font-size:11px;color:var(--green);font-weight:800;letter-spacing:1px; }
-.rate { font-size:28px;font-weight:800;margin:17px 0 5px; }
-.rate small { font-size:12px;color:var(--muted);font-weight:400; }
-ul.features { list-style:none;padding:0;margin:20px 0; }
-ul.features li { padding:9px 0;border-bottom:1px solid var(--line);font-size:13px;color:#d3ddeb; }
-ul.features li:before { content:"✓";color:var(--green);margin-right:9px; }
-.calculator {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:30px;
-}
-.field { margin-bottom:17px; }
-label { display:block;font-size:13px;color:#c5d2e2;margin-bottom:8px; }
-input,select {
-  width:100%;
-  color:var(--text);
-  background:#091626;
-  border:1px solid var(--line);
-  border-radius:9px;
-  padding:13px;
-  outline:none;
-}
-input:focus,select:focus { border-color:var(--green); }
-.results {
-  background:#091626;
-  border:1px solid var(--line);
-  border-radius:13px;
-  padding:20px;
-}
-.result {
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-  padding:15px 0;
-  border-bottom:1px solid var(--line);
-  font-size:14px;
-}
-.result span { color:var(--muted); }
-.result strong { text-align:right; }
-.result.total strong { color:var(--green);font-size:19px; }
-.assets { display:grid;grid-template-columns:repeat(4,1fr);gap:13px; }
-.asset {
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:18px;
-}
-.asseticon {
-  width:37px;height:37px;border-radius:50%;
-  display:grid;place-items:center;
-  background:#1b3548;color:var(--green);font-weight:800;
-  margin-bottom:15px;
-}
-.asset strong { display:block; }
-.asset small { display:block;color:var(--muted);margin-top:7px; }
-.risk {
-  margin:30px 0;
-  border:1px solid var(--line);
-  background:#0d1a2a;
-  border-radius:12px;
-  padding:18px;
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.8;
-}
-footer {
-  border-top:1px solid var(--line);
-  padding:27px 24px;
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.7;
-}
-.footinner { max-width:1180px;margin:auto; }
-@media(max-width:800px) {
-  .navlinks { display:none; }
-  .hero,.calculator { grid-template-columns:1fr; }
-  .hero { padding-top:35px;gap:30px; }
-  .grid3 { grid-template-columns:1fr; }
-  .assets { grid-template-columns:repeat(2,1fr); }
-  .sectionhead { align-items:start;flex-direction:column; }
-}
-@media(max-width:420px) {
-  .container { padding:0 16px; }
-  nav { padding:18px 16px; }
-  .balance { font-size:32px; }
-  .assets { grid-template-columns:1fr 1fr; }
-}
+:root{--bg:#080f1b;--panel:#111d2d;--panel2:#16253a;--border:#26374d;--text:#eef4fb;--muted:#96a8bd;--green:#36d6a0;--red:#ff747e;--gold:#e9bd68}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px Arial,sans-serif}
+a{color:inherit;text-decoration:none}
+header{height:auto;min-height:72px;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.logo{font-size:23px;font-weight:800;letter-spacing:-.7px}.logo span{color:var(--green)}
+nav{display:flex;gap:22px;flex-wrap:wrap}nav a{color:var(--muted)}nav a:hover{color:var(--green)}
+.demo{padding:11px 5%;background:#33291a;color:#f2d59a;font-size:11px;letter-spacing:.8px}
+main{max-width:1250px;margin:auto;padding:30px 22px 60px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+h1{font-size:29px;margin:0 0 8px}.muted{color:var(--muted);line-height:1.6}
+.pill{display:inline-block;padding:7px 10px;border:1px solid var(--border);border-radius:30px;color:var(--muted);font-size:11px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin:24px 0}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:13px;padding:20px;min-width:0}
+.card-title{color:var(--muted);font-size:12px;margin-bottom:15px}
+.value{font-size:26px;font-weight:700;overflow-wrap:anywhere}.small{font-size:12px;margin-top:9px;color:var(--muted)}
+.green{color:var(--green)}.red{color:var(--red)}.gold{color:var(--gold)}
+.layout{display:grid;grid-template-columns:1.3fr .7fr;gap:18px}
+h2{font-size:18px;margin:0 0 18px}
+.row{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--border);align-items:center}
+.row:last-child{border-bottom:0}
+.btn{display:inline-block;border:0;border-radius:8px;background:var(--green);color:#052116;padding:12px 16px;font-weight:bold;cursor:pointer;font-size:13px}
+.btn.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--border)}
+.btn.full{width:100%;margin-top:14px}
+input,select{width:100%;background:#091321;color:var(--text);border:1px solid var(--border);padding:12px;border-radius:8px;margin:8px 0 15px}
+label{color:var(--muted);font-size:12px}
+.result{padding:15px;background:#091522;border:1px solid var(--border);border-radius:10px;margin-top:14px}
+.result strong{font-size:24px;display:block;margin:7px 0}
+.note{margin-top:18px;padding:15px;border-left:3px solid var(--gold);background:#171d27;color:#bdc8d6;line-height:1.65;font-size:12px}
+footer{text-align:center;color:var(--muted);border-top:1px solid var(--border);padding:24px;font-size:12px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:1fr}}
+@media(max-width:480px){.grid{grid-template-columns:1fr}nav{gap:13px}h1{font-size:25px}}
 </style>
 </head>
 <body>
+<header>
+  <a class="logo" href="index.html">Finance<span>House</span></a>
+  <nav>
+    <a href="index.html">Dashboard</a>
+    <a href="market-lab.html">Market Lab</a>
+    <a href="#strategy">Strategy</a>
+    <a href="#referrals">Referrals</a>
+    <a href="#withdrawals">Withdrawal rules</a>
+  </nav>
+</header>
+<div class="demo">FICTIONAL INVESTIGATION DEMO · NO REAL MONEY OR TRANSACTIONS</div>
 
-<div class="topnote">
-  NOVAVEST DIGITAL · FICTIONAL PRODUCT PROTOTYPE · NO REAL INVESTMENTS OR TRANSACTIONS
-</div>
-
-<nav>
-  <a class="brand" href="#">NovaVest<span> Digital</span></a>
-  <div class="navlinks">
-    <a href="#strategies">Strategies</a>
-    <a href="#markets">Markets</a>
-    <a href="#calculator">Calculator</a>
-  </div>
-  <a href="#calculator" class="btn btn-green">Explore Strategies</a>
-</nav>
-
-<main class="container">
-  <section class="hero">
+<main>
+  <div class="top">
     <div>
-      <div class="eyebrow">Digital asset portfolio solutions</div>
-      <h1>Build your digital future with <span>crypto & NFTs.</span></h1>
-      <p class="lead">
-        Explore digital-asset strategy concepts spanning cryptocurrency
-        markets, blockchain ecosystems and NFT collections. Compare
-        hypothetical portfolio scenarios and see how different return
-        assumptions affect your investment over time.
-      </p>
-      <div class="actions">
-        <a href="#strategies" class="btn btn-green">View Strategies</a>
-        <a href="#calculator" class="btn btn-dark">Calculate Growth</a>
-      </div>
+      <h1>Account overview</h1>
+      <div class="muted">Digital asset strategy dashboard</div>
+    </div>
+    <span class="pill">DEMO ACCOUNT · SIMULATED DATA</span>
+  </div>
+
+  <div class="grid">
+    <section class="card">
+      <div class="card-title">Illustrative account balance</div>
+      <div class="value" id="balance">$500.00</div>
+      <div class="small">Example starting capital</div>
+    </section>
+    <section class="card">
+      <div class="card-title">Advertised daily return</div>
+      <div class="value green">1.1%+</div>
+      <div class="small">Platform-reported claim, not verified</div>
+    </section>
+    <section class="card">
+      <div class="card-title">Daily signal allowance</div>
+      <div class="value">7</div>
+      <div class="small">Signals per day, as reported</div>
+    </section>
+    <section class="card">
+      <div class="card-title">Example growth</div>
+      <div class="value gold">$771</div>
+      <div class="small">$500 to $771 is a reported example</div>
+    </section>
+  </div>
+
+  <div class="layout">
+    <div>
+      <section class="card" id="strategy">
+        <h2>Strategy performance calculator</h2>
+        <p class="muted">Explore the effect of daily compounding using the advertised 1.1% rate. This calculation assumes the rate is achieved every day, with no losing days, fees, or interruptions.</p>
+
+        <label for="capital">Starting capital (USD)</label>
+        <input id="capital" type="number" min="1" value="500" step="any">
+
+        <label for="dailyRate">Assumed daily return</label>
+        <select id="dailyRate">
+          <option value="0.5">0.5% per day</option>
+          <option value="1.1" selected>1.1% per day — advertised claim</option>
+          <option value="1.5">1.5% per day — hypothetical</option>
+        </select>
+
+        <label for="days">Number of days</label>
+        <select id="days">
+          <option value="7">7 days</option>
+          <option value="30">30 days</option>
+          <option value="40" selected>40 days</option>
+          <option value="60">60 days</option>
+          <option value="90">90 days</option>
+          <option value="180">180 days</option>
+          <option value="365">365 days</option>
+        </select>
+
+        <button class="btn full" onclick="calculateGrowth()">Calculate scenario</button>
+        <div class="result">
+          <span class="muted">Projected balance under these assumptions</span>
+          <strong id="projected">$774.99</strong>
+          <span id="profit" class="green">Illustrative gain: $274.99</span>
+          <p class="muted" id="growthDetails">40 days at a constant assumed 1.1% daily return.</p>
+        </div>
+      </section>
+
+      <section class="card" id="referrals" style="margin-top:18px">
+        <h2>Referral reward structure</h2>
+        <div class="row"><span>Inviter reward</span><strong>$50</strong></div>
+        <div class="row"><span>New-member bonus</span><strong>$50</strong></div>
+        <div class="row"><span>Team commission claim</span><strong>10%</strong></div>
+        <div class="row"><span>Additional signal claim</span><strong>+12 signals</strong></div>
+        <p class="muted">The reported extra 12 signals are associated with a qualifying referral deposit of at least 30% of the inviter's balance. Eligibility and actual payment have not been independently verified.</p>
+      </section>
     </div>
 
-    <div class="panel">
-      <div class="panelhead">
-        <span class="muted">Sample portfolio overview</span>
-        <span class="pill">DEMO ACCOUNT</span>
-      </div>
-      <div class="muted" style="margin-top:28px;font-size:13px">Illustrative portfolio value</div>
-      <div class="balance">$6,482.50</div>
-      <div class="gain">+8.04% hypothetical period return</div>
-      <div class="stats">
-        <div class="stat">
-          <small>Crypto allocation</small>
-          <strong>65%</strong>
+    <div>
+      <section class="card">
+        <h2>Reported account options</h2>
+        <div class="row"><span>Example entry amount</span><strong>$500</strong></div>
+        <div class="row"><span>Higher-tier amount</span><strong>$3,000</strong></div>
+        <div class="row"><span>Reported signal frequency</span><strong>7 / day</strong></div>
+        <div class="row"><span>Advertised accuracy</span><strong>Over 99%</strong></div>
+        <p class="muted">These are figures reported in the platform material supplied for this demonstration, not verified performance statistics.</p>
+        <a class="btn full" href="market-lab.html" style="text-align:center">Open Market Lab →</a>
+      </section>
+
+      <section class="card" id="withdrawals" style="margin-top:18px">
+        <h2>Reported withdrawal conditions</h2>
+        <div class="row"><span>Referral requirement</span><strong>6 referrals</strong></div>
+        <div class="row"><span>Trading-volume condition</span><strong>5,000 minimum</strong></div>
+        <div class="row"><span>Reported withdrawal fee</span><strong class="gold">20%</strong></div>
+        <label for="withdrawAmount">Illustrative withdrawal amount (USD)</label>
+        <input id="withdrawAmount" type="number" min="0" value="500" step="any">
+        <button class="btn secondary full" onclick="calculateWithdrawal()">Calculate fee</button>
+        <div class="result">
+          <div class="small">Illustrative fee at 20%</div>
+          <strong id="fee">$100.00</strong>
+          <div class="small">Illustrative remainder after fee</div>
+          <strong id="net">$400.00</strong>
         </div>
-        <div class="stat">
-          <small>NFT allocation</small>
-          <strong>20%</strong>
-        </div>
-        <div class="stat">
-          <small>Other digital assets</small>
-          <strong>15%</strong>
-        </div>
-        <div class="stat">
-          <small>Account status</small>
-          <strong style="color:var(--green)">Simulation</strong>
-        </div>
-      </div>
+        <p class="muted">This calculator does not submit a withdrawal request or confirm that any withdrawal is possible.</p>
+      </section>
     </div>
-  </section>
+  </div>
 
-  <section class="section" id="strategies">
-    <div class="sectionhead">
-      <div>
-        <div class="eyebrow">Portfolio strategy profiles</div>
-        <h2>Explore investment strategies</h2>
-      </div>
-      <p>
-        Compare sample portfolio profiles with different risk levels,
-        asset mixes and hypothetical monthly return assumptions.
-      </p>
-    </div>
-
-    <div class="grid3">
-      <article class="card">
-        <div class="tag">01 / CONSERVATIVE SCENARIO</div>
-        <h3>Digital Core</h3>
-        <p>A sample portfolio concept focused on established digital assets and a lower assumed growth rate.</p>
-        <div class="rate">2% <small>/ month assumed</small></div>
-        <ul class="features">
-          <li>Bitcoin and Ethereum exposure</li>
-          <li>Illustrative six-month projection</li>
-          <li>Lower assumed return scenario</li>
-          <li>Market losses remain possible</li>
-        </ul>
-        <button class="btn btn-dark" onclick="chooseStrategy(2)">Calculate Scenario</button>
-      </article>
-
-      <article class="card featured">
-        <div class="tag">02 / GROWTH SCENARIO</div>
-        <h3>Digital Growth</h3>
-        <p>A sample higher-volatility strategy concept combining crypto assets and blockchain-related opportunities.</p>
-        <div class="rate">8% <small>/ month assumed</small></div>
-        <ul class="features">
-          <li>Multi-asset crypto scenario</li>
-          <li>Growth-focused assumptions</li>
-          <li>Compound-growth calculator</li>
-          <li>High volatility and loss risk</li>
-        </ul>
-        <button class="btn btn-green" onclick="chooseStrategy(8)">Calculate Scenario</button>
-      </article>
-
-      <article class="card">
-        <div class="tag">03 / HIGH-RISK SCENARIO</div>
-        <h3>Digital Frontier</h3>
-        <p>A purely hypothetical high-risk scenario illustrating the effect of aggressive return assumptions.</p>
-        <div class="rate">15% <small>/ month assumed</small></div>
-        <ul class="features">
-          <li>Crypto and NFT concepts</li>
-          <li>High-volatility scenario</li>
-          <li>Illustrative compounded growth</li>
-          <li>Substantial losses possible</li>
-        </ul>
-        <button class="btn btn-dark" onclick="chooseStrategy(15)">Calculate Scenario</button>
-      </article>
-    </div>
-  </section>
-
-  <section class="section" id="markets">
-    <div class="sectionhead">
-      <div>
-        <div class="eyebrow">Digital asset ecosystem</div>
-        <h2>Markets & asset classes</h2>
-      </div>
-      <p>Explore categories used in the fictional portfolio model.</p>
-    </div>
-    <div class="assets">
-      <div class="asset"><div class="asseticon">₿</div><strong>Bitcoin</strong><small>Digital currency</small></div>
-      <div class="asset"><div class="asseticon">Ξ</div><strong>Ethereum</strong><small>Smart contracts</small></div>
-      <div class="asset"><div class="asseticon">◎</div><strong>Solana</strong><small>Blockchain ecosystem</small></div>
-      <div class="asset"><div class="asseticon">◇</div><strong>NFTs</strong><small>Digital collectibles</small></div>
-    </div>
-  </section>
-
-  <section class="section" id="calculator">
-    <div class="sectionhead">
-      <div>
-        <div class="eyebrow">Portfolio projection tool</div>
-        <h2>Investment calculator</h2>
-      </div>
-      <p>
-        Change the starting capital, assumed return, duration and fee
-        to explore different hypothetical outcomes.
-      </p>
-    </div>
-
-    <div class="panel calculator">
-      <div>
-        <div class="field">
-          <label for="principal">Starting investment (USD)</label>
-          <input id="principal" type="number" min="0" value="500" oninput="calculate()">
-        </div>
-        <div class="field">
-          <label for="monthlyRate">Assumed monthly return</label>
-          <select id="monthlyRate" onchange="calculate()">
-            <option value="-5">-5% · Loss scenario</option>
-            <option value="2">2% · Lower-growth scenario</option>
-            <option value="5">5% · Higher-growth scenario</option>
-            <option value="8" selected>8% · High-risk scenario</option>
-            <option value="15">15% · Extreme scenario</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="duration">Projection period</label>
-          <select id="duration" onchange="calculate()">
-            <option value="1">1 month</option>
-            <option value="3">3 months</option>
-            <option value="6" selected>6 months</option>
-            <option value="12">12 months</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="fee">Example exit fee (%)</label>
-          <input id="fee" type="number" min="0" max="100" value="5" oninput="calculate()">
-        </div>
-      </div>
-
-      <div class="results">
-        <div class="result"><span>Starting capital</span><strong id="startValue">$500.00</strong></div>
-        <div class="result"><span>Projected value before fee</span><strong id="projected">$793.44</strong></div>
-        <div class="result"><span>Hypothetical gain / loss</span><strong id="profit">$293.44</strong></div>
-        <div class="result"><span>Example exit fee</span><strong id="exitFee">$39.67</strong></div>
-        <div class="result total"><span>Illustrative value after fee</span><strong id="netValue">$753.77</strong></div>
-        <p class="muted" style="font-size:12px;line-height:1.7;margin-bottom:0">
-          The calculator assumes a constant monthly rate and compounding.
-          Real crypto and NFT returns are unpredictable and may be negative.
-          These figures are not a forecast or promise of earnings.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <div class="risk">
-    <strong style="color:var(--text)">Prototype and risk disclosure</strong><br>
-    NovaVest Digital is a fictional interface for educational demonstration.
-    Portfolio balances, strategy profiles and projected figures are sample data.
-    No customer funds, real investments, NFT purchases, wallet connections,
-    deposits, withdrawals or payment processing are implemented. Digital assets
-    can be highly volatile, illiquid and subject to total loss.
+  <div class="note">
+    <strong>Important:</strong> FinanceHouse is a fictional demonstration, not a financial service or a clone of a real provider. The figures above are claims reported for analysis. A constant 1.1% daily return is an assumption, not evidence that such returns occur. Compounding can magnify losses as well as gains. Referral rewards, accuracy claims, fees and withdrawal conditions should be independently verified.
   </div>
 </main>
-
-<footer>
-  <div class="footinner">
-    <strong style="color:var(--text)">NovaVest Digital</strong><br>
-    Fictional digital-asset portfolio prototype. Not a financial services provider,
-    investment adviser, exchange or custodian.
-    <br>© <span id="year"></span> NovaVest Digital
-  </div>
-</footer>
+<footer>FinanceHouse · Independent educational prototype · No deposits, wallets or real trades</footer>
 
 <script>
-function usd(value) {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD"
-  }).format(Number.isFinite(value) ? value : 0);
+const usd = n => new Intl.NumberFormat("en-US", {
+  style: "currency", currency: "USD"
+}).format(n);
+
+function calculateGrowth() {
+  const capital = Number(document.getElementById("capital").value);
+  const rate = Number(document.getElementById("dailyRate").value) / 100;
+  const days = Number(document.getElementById("days").value);
+
+  if (!Number.isFinite(capital) || capital <= 0) {
+    alert("Enter a starting amount greater than zero.");
+    return;
+  }
+
+  const ending = capital * Math.pow(1 + rate, days);
+  const difference = ending - capital;
+
+  document.getElementById("balance").textContent = usd(capital);
+  document.getElementById("projected").textContent = usd(ending);
+  document.getElementById("profit").textContent =
+    (difference >= 0 ? "Illustrative gain: " : "Illustrative loss: ") +
+    usd(Math.abs(difference));
+  document.getElementById("profit").className = difference >= 0 ? "green" : "red";
+  document.getElementById("growthDetails").textContent =
+    days + " days at a constant assumed " + (rate * 100).toFixed(2) +
+    "% daily return, compounded daily, before fees or losses.";
 }
 
-function calculate() {
-  const principal = Math.max(0, Number(document.getElementById("principal").value) || 0);
-  const monthlyRate = (Number(document.getElementById("monthlyRate").value) || 0) / 100;
-  const months = Math.max(1, Number(document.getElementById("duration").value) || 1);
-  const feeRate = Math.min(100, Math.max(0, Number(document.getElementById("fee").value) || 0)) / 100;
-
-  const projected = principal * Math.pow(1 + monthlyRate, months);
-  const gain = projected - principal;
-  const exitFee = projected * feeRate;
-  const net = projected - exitFee;
-
-  document.getElementById("startValue").textContent = usd(principal);
-  document.getElementById("projected").textContent = usd(projected);
-
-  const profitElement = document.getElementById("profit");
-  profitElement.textContent = (gain > 0 ? "+" : "") + usd(gain);
-  profitElement.style.color = gain < 0 ? "#ff8585" : "var(--green)";
-
-  document.getElementById("exitFee").textContent = usd(exitFee);
-  document.getElementById("netValue").textContent = usd(net);
+function calculateWithdrawal() {
+  const amount = Number(document.getElementById("withdrawAmount").value);
+  if (!Number.isFinite(amount) || amount < 0) {
+    alert("Enter a valid amount.");
+    return;
+  }
+  const fee = amount * 0.20;
+  document.getElementById("fee").textContent = usd(fee);
+  document.getElementById("net").textContent = usd(amount - fee);
 }
 
-function chooseStrategy(rate) {
-  document.getElementById("monthlyRate").value = String(rate);
-  calculate();
-  document.getElementById("calculator").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
-}
-
-document.getElementById("year").textContent = new Date().getFullYear();
-calculate();
+calculateGrowth();
+calculateWithdrawal();
 </script>
 </body>
 </html>
